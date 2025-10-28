@@ -1,12 +1,11 @@
 
 
 export function getFourHours() {
-    const blockHour = document.querySelector('#hour_block1');
     const hourContainer = document.querySelector("#hour_container")
-    for(let i=2;i<=4;i++){
-        const newBlockHour = blockHour.cloneNode(true);
-        newBlockHour.id = newBlockHour.id.slice(0, -1) + i.toString();
-        newBlockHour.textContent = "time";
-        hourContainer.appendChild(newBlockHour);
+    let html = ``;
+    for(let i=1;i<=4;i++){
+        const blockHour = `<div id="hour_block${i}" class="hour_block">time</div>`
+        html += blockHour;        
     }
+    hourContainer.innerHTML = html;
 }

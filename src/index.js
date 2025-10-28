@@ -3,12 +3,14 @@ import "./styles.css";
 import night from '../gifs/tired space GIF by Cartoon Hangover.gif';
 import day from '../gifs/Pokemon Anime Sun GIF by Pokémon.gif';
 import { getFourHours } from "./getFourHours";
+import { getSixDays } from "./getSixDays";
+import { getWheather } from "./apiHandler";
 
-async function getWheather(city) {
-    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Valencia/2025-10-21/2025-10-28?key=C9Z6KNQXXT3L7ALUWWCSHSMZR`)
+// async function getWheather(city) {
+//     const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Valencia/2025-10-28/2025-11-07?key=C9Z6KNQXXT3L7ALUWWCSHSMZR`)
 
-    console.log(await response.json());
-}
+//     console.log(await response.json());
+// }
 
 getWheather('Valencia')
 
@@ -19,6 +21,7 @@ if (date.getHours() >= 19 || date.getHours() <= 5){
 } else {
     background.style.backgroundImage = `url(${day})`
 }
-console.log(date.getHours())
+// console.log(date.getHours())
 
 getFourHours();
+getSixDays();
