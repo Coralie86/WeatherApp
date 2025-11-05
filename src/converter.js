@@ -31,13 +31,23 @@ export function convertHour(hour) {
 
 //Convert te,perqture into Degree Celcius
 export function convertTemp(temperature){
-    let degreeCelcius = Math.round((temperature -32) * (5/9)).toFixed(1);
+    let degreeCelcius = ((temperature -32) * (5/9)).toFixed(1);
     return degreeCelcius.toString() + "C°"
 }
 
 //Convert speed in to km/k
 export function convertSpeed(speed){
-    return (speed * 1.609344).toString() + " km/h"
+    return (speed * 1.609344).toFixed(2).toString() + " km/h"
+}
+
+//Convert icon text into icon svg
+const icons = {};
+const context = require.context('./icons-weather', false, /\.svg$/);
+context.keys().forEach(key => {
+  icons[key] = context(key);
+});
+export function convertIcon(text){
+    return (icons['./' + text + '.svg'])
 }
 
 //Convert data received into obj with data used
@@ -46,12 +56,12 @@ export function convertData(data){
         "hours": data.days[0].hours.map(hour => ({
             "hour": convertHour(hour.datetime),
             "temperature": convertTemp(hour.temp),
-            "icon": hour.icon,
+            "icon": convertIcon(hour.icon),
             "description": hour.conditions
         })),
         "days": data.days.map(day => ({
             "day": convertDate(day.datetime),
-            "icon": day.icon,
+            "icon": convertIcon(day.icon),
             "humidity": day.humidity.toString() + "%",
             "minTemp": convertTemp(day.tempmin),
             "maxTemp": convertTemp(day.tempmax)
@@ -60,7 +70,7 @@ export function convertData(data){
             "location": data.address,
             "today": convertDate(data.days[0].datetime),
             "conditions": data.currentConditions.conditions,
-            "icon": data.currentConditions.icon,
+            "icon": convertIcon(data.currentConditions.icon),
             "humidity": data.currentConditions.humidity.toString() + "%",
             "windspeed": convertSpeed(data.currentConditions.windspeed),
             "feelslike": convertTemp(data.currentConditions.feelslike),

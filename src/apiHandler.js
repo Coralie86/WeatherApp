@@ -3,7 +3,10 @@ import {convertData} from "./converter";
 export async function getWheather(city) {
     try {
         const date = getDate();
-        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Poitiers/${date.today}/${date.nextWeek}?key=C9Z6KNQXXT3L7ALUWWCSHSMZR`)
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/${date.today}/${date.nextWeek}?key=C9Z6KNQXXT3L7ALUWWCSHSMZR`)
+        
+        if(!response.ok) throw new Error(`HTTP error ${response.status}`);
+        
         const data = await response.json();
         const dataConverted = convertData(data);
         return dataConverted

@@ -17,3 +17,8 @@ export function previous(page) {
     }
     return page;
 }
+
+export function getCity() {
+    const input = document.querySelector('#location');
+    return input.value;
+}
