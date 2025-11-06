@@ -1,21 +1,10 @@
 
 import "./styles.css";
-import night from '../gifs/GIF by Fabiola Lara  Casa Girl.gif';
-import day from '../gifs/Pokemon Anime Sun GIF by Pokémon.gif';
 import { getFourHours } from "./getFourHours";
 import { getSixDays } from "./getSixDays";
 import {next, previous, getCity} from "./inputHandler";
 import {getCurrentConditions} from "./getCurrentConditions"
 import { getWheather } from "./apiHandler";
-
-// const background = document.querySelector('#background')
-// const date = new Date();
-// if (date.getHours() >= 19 || date.getHours() <= 5){
-//     background.style.backgroundImage = `url(${night})`
-// } else {
-//     background.style.backgroundImage = `url(${day})`
-// }
-
 
 
 const App = (() => {
